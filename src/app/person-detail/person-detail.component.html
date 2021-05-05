@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xl-4"></div>
+    <div class="col-xl-4">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h5>Agregar persona</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div>
+                        <label>Nombre: <span style="color: red;">*</span></label>
+                        <input class="form-control" type="text" placeholder="Nombre" [(ngModel)]="name" />
+                    </div>
+                    <div>
+                        <label>Apellido: <span style="color: red;">*</span></label>
+                        <input class="form-control" type="text" placeholder="Apellido" [(ngModel)]="lastName" />
+                    </div>
+                </form>
+                <div *ngIf="!isFormValid">
+                    <ul *ngFor="let err of errors">
+                        <li style="color: red; list-style: none;">{{ err }}</li>
+                    </ul>
+                </div>
+                <div *ngIf="isSuccessData">
+                    <span style="color: green;">{{ successDataMessage }}</span>
+                </div>
+                <div *ngIf="isErrorData">
+                    <span style="color: red;">{{ errorDataMessage }}</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="mt-2">
+                    <button type="button" class="btn btn-primary btn-block" (click)="validateFields()">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-block" (click)="clearFields()">Limpiar</button>
+                    <button type="button" class="btn btn-success btn-block" (click)="queryData()">Consultar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4"></div>
+</div>

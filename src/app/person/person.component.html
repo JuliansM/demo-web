@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-xl-1"></div>
+    <div class="col-xl-10">
+        <div class="card">
+            <div class="card-body" align="right">
+                <button type="button" class="btn btn-secondary" (click)="addPerson()">Nuevo registro</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-1"></div>
+</div>
+<div class="row">
+    <div class="col-xl-1"></div>
+    <div class="col-xl-10">
+        <div class="card">
+            <div class="card-header">
+                <h5>Personas</h5>
+            </div>
+            <div class="card-body">
+                <p-table #tt [value]="datasource" [loading]="loading" [totalRecords]="totalRecords"
+                    [(selection)]="elementSelecteds">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th style="width: 5%;">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th style="width: 20%;">
+                                {{ 'Nombre' }}
+                            </th>
+                            <th style="width: 20%;">
+                                {{ 'Apellido' }}
+                            </th>
+                            <th style="width: 15%;">
+                                {{ 'Estado' }}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                        <tr>
+                            <td style="width: 5%;" [pSelectableRow]="rowData" class="ui-resizable-column">
+                                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                            </td>
+                            <td style="width: 20%;">
+                                {{ rowData["name"] }}
+                            </td>
+                            <td style="width: 20%;">
+                                {{ rowData["lastName"] }}
+                            </td>
+                            <td style="width: 15%;">
+                                {{ rowData["processed"] ? 'PROCESADO' : 'NO-PROCESADO' }}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr class="text-center">
+                            <td colspan="4">
+                                <b class="h8">{{ 'No hay datos para mostrar' }}</b>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <tr class="text-center">
+                            <td colspan="4">
+                                <b>{{ 'Total registros' }}: {{ totalRecords | number }}</b>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-primary" (click)="process()">Procesar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-1"></div>
+</div>
